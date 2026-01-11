@@ -14,7 +14,7 @@
 #pragma comment(lib, "winhttp.lib")
 #pragma comment(lib, "shell32.lib")
 
-// IDs contrôles, menus, etc.
+// IDs contrÃ´les, menus, etc.
 
 enum
 {
@@ -119,7 +119,7 @@ void CreerMenu(HWND hwnd)
 	AppendMenu(hFile, MF_STRING, ID_MENU_FILE_EXPORTZIP, L"&Exporter projet Git en ZIP...");
 	AppendMenu(hFile, MF_SEPARATOR, 0, nullptr);
 	AppendMenu(hFile, MF_STRING, ID_MENU_FILE_EXIT, L"&Quitter");
-	AppendMenu(hHelp, MF_STRING, ID_MENU_HELP_ABOUT, L"&À propos");
+	AppendMenu(hHelp, MF_STRING, ID_MENU_HELP_ABOUT, L"&Ã€ propos");
 	AppendMenu(hMenuBar, MF_POPUP, (UINT_PTR)hFile, L"&Fichier");
 	AppendMenu(hMenuBar, MF_POPUP, (UINT_PTR)hHelp, L"&Aide");
 	SetMenu(hwnd, hMenuBar);
@@ -133,7 +133,7 @@ void CreerRuban(HWND hwnd)
  tbb[0].idCommand = ID_TOOL_CREATE_REPO;
  tbb[0].fsState = TBSTATE_ENABLED;
  tbb[0].fsStyle = TBSTYLE_BUTTON;
- tbb[0].iString = (INT_PTR)L"Créer repo";
+ tbb[0].iString = (INT_PTR)L"CrÃ©er repo";
  tbb[1].iBitmap = 1;
  tbb[1].idCommand = ID_TOOL_EXPORT_ZIP;
  tbb[1].fsState = TBSTATE_ENABLED;
@@ -152,14 +152,14 @@ void CreerInterface(HWND hwnd)
 	CreerStatut(hwnd);
 	HFONT hFont = (HFONT)GetStockObject(DEFAULT_GUI_FONT);
 	CreateWindowEx(0, L"STATIC", L"GitHub Token:", WS_CHILD | WS_VISIBLE, 10, 40, 100, 20, hwnd, nullptr, nullptr, nullptr);
-	HWND hTokenEdit = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"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", WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_PASSWORD, 120, 40, 750, 20, hwnd, (HMENU)IDC_TOKEN_EDIT, nullptr, nullptr);
+	HWND hTokenEdit = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"", WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_PASSWORD, 120, 40, 750, 20, hwnd, (HMENU)IDC_TOKEN_EDIT, nullptr, nullptr);
 	CreateWindowEx(0, L"STATIC", L"Nom du repository:", WS_CHILD | WS_VISIBLE, 10, 70, 150, 20, hwnd, nullptr, nullptr, nullptr);
 	HWND hRepoEdit = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"", WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL, 140, 70, 300, 20, hwnd, (HMENU)IDC_REPONAME_EDIT, nullptr, nullptr);
 	CreateWindowEx(0, L"STATIC", L"Description:", WS_CHILD | WS_VISIBLE, 10, 100, 100, 20, hwnd, nullptr, nullptr, nullptr);
 	HWND hDescEdit = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"", WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL, 120, 100, 750, 20, hwnd, (HMENU)IDC_DESC_EDIT, nullptr, nullptr);
-	HWND hPrivateCheck = CreateWindowEx(0, L"BUTTON", L"Privé", WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX, 10, 130, 80, 20, hwnd, (HMENU)IDC_PRIVATE_CHECK, nullptr, nullptr);
-	HWND hCreateBtn = CreateWindowEx(0, L"BUTTON", L"Créer le repository", WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 120, 130, 180, 25, hwnd, (HMENU)IDC_CREATE_BUTTON, nullptr, nullptr);
-	CreateWindowEx(0, L"STATIC", L"Réponse GitHub:", WS_CHILD | WS_VISIBLE, 10, 165, 120, 20, hwnd, nullptr, nullptr, nullptr);
+	HWND hPrivateCheck = CreateWindowEx(0, L"BUTTON", L"PrivÃ©", WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX, 10, 130, 80, 20, hwnd, (HMENU)IDC_PRIVATE_CHECK, nullptr, nullptr);
+	HWND hCreateBtn = CreateWindowEx(0, L"BUTTON", L"CrÃ©er le repository", WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 120, 130, 180, 25, hwnd, (HMENU)IDC_CREATE_BUTTON, nullptr, nullptr);
+	CreateWindowEx(0, L"STATIC", L"RÃ©ponse GitHub:", WS_CHILD | WS_VISIBLE, 10, 165, 120, 20, hwnd, nullptr, nullptr, nullptr);
 	HWND hOutputEdit = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"", WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL | ES_READONLY, 10, 185, 860, 120, hwnd, (HMENU)IDC_OUTPUT_EDIT, nullptr, nullptr);
 	CreateWindowEx(0, L"STATIC", L"Recherche dans l'historique:", WS_CHILD | WS_VISIBLE, 10, 315, 160, 20, hwnd, nullptr, nullptr, nullptr);
 	g_hSearchEdit = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", L"", WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL, 180, 315, 300, 20, hwnd, (HMENU)IDC_SEARCH_EDIT, nullptr, nullptr);
@@ -189,7 +189,7 @@ void InitialiserListe(HWND hList)
 	col.cx = 200;
 	col.iSubItem = 0;
 	ListView_InsertColumn(hList, 0, &col);
-	col.pszText = (LPWSTR)L"Privé";
+	col.pszText = (LPWSTR)L"PrivÃ©";
 	col.cx = 60;
 	col.iSubItem = 1;
 	ListView_InsertColumn(hList, 1, &col);
@@ -521,23 +521,23 @@ bool Zipper(const std::wstring& folder, const std::wstring& zipPath)
 }
 void GererSortieZIP(HWND hwnd)
 {
-	std::wstring folder = LireTexteSaisie(hwnd, IDC_REPONAME_EDIT); // hack: à remplacer par un vrai chemin si tu veux
+	std::wstring folder = LireTexteSaisie(hwnd, IDC_REPONAME_EDIT); // hack: Ã  remplacer par un vrai chemin si tu veux
 	if (folder.empty())
 	{
-		MessageBox(hwnd, L"Pour la démo, saisis le chemin du dossier Git local dans 'Nom du repository'.", L"Info", MB_ICONINFORMATION);
+		MessageBox(hwnd, L"Pour la dÃ©mo, saisis le chemin du dossier Git local dans 'Nom du repository'.", L"Info", MB_ICONINFORMATION);
 		return;
 	}
 	std::wstring zipPath = folder + L".zip";
 	AfficherLeStatut(L"Export ZIP en cours...");
 	if (Zipper(folder, zipPath))
 	{
-		AfficherLeStatut(L"Export ZIP terminé.");
-		MessageBox(hwnd, (L"ZIP créé : " + zipPath).c_str(), L"Export ZIP", MB_OK | MB_ICONINFORMATION);
+		AfficherLeStatut(L"Export ZIP terminÃ©.");
+		MessageBox(hwnd, (L"ZIP crÃ©Ã© : " + zipPath).c_str(), L"Export ZIP", MB_OK | MB_ICONINFORMATION);
 	}
 	else
 	{
-		AfficherLeStatut(L"Échec de l'export ZIP.");
-		MessageBox(hwnd, L"Échec de l'export ZIP (tar.exe requis).", L"Erreur", MB_OK | MB_ICONERROR);
+		AfficherLeStatut(L"Ã‰chec de l'export ZIP.");
+		MessageBox(hwnd, L"Ã‰chec de l'export ZIP (tar.exe requis).", L"Erreur", MB_OK | MB_ICONERROR);
 	}
 }
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -546,7 +546,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		CreerInterface(hwnd);
-		AfficherLeStatut(L"Prêt.");
+		AfficherLeStatut(L"PrÃªt.");
 		return 0;
 	case WM_SIZE:  Ajustement(hwnd);
 		return 0;
@@ -567,18 +567,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				MessageBox(hwnd, L"Token GitHub et nom du repository requis.", L"Erreur", MB_ICONERROR);
 				return 0;
 			}
-			AfficherLeStatut(L"Création du repository en cours...");
-			DefinirTexteSaisie(hwnd, IDC_OUTPUT_EDIT, L"Envoi de la requête à GitHub...");
+			AfficherLeStatut(L"CrÃ©ation du repository en cours...");
+			DefinirTexteSaisie(hwnd, IDC_OUTPUT_EDIT, L"Envoi de la requÃªte Ã  GitHub...");
 			std::wstring response;
 			bool ok = CreerDepotGIT(token, name, desc, isPrivate, response);
 			if (!ok)
 			{
-				AfficherLeStatut(L"Échec de la requête GitHub.");
-				DefinirTexteSaisie(hwnd, IDC_OUTPUT_EDIT, L"Échec de la requête HTTP vers GitHub.");
+				AfficherLeStatut(L"Ã‰chec de la requÃªte GitHub.");
+				DefinirTexteSaisie(hwnd, IDC_OUTPUT_EDIT, L"Ã‰chec de la requÃªte HTTP vers GitHub.");
 			}
 			else
 			{
-				AfficherLeStatut(L"Repository créé (voir historique).");
+				AfficherLeStatut(L"Repository crÃ©Ã© (voir historique).");
 				DefinirTexteSaisie(hwnd, IDC_OUTPUT_EDIT, response);
 				std::wstring url = ExtraireLien(response);
 				SYSTEMTIME st;
@@ -598,7 +598,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GererSortieZIP(hwnd);
 			return 0;
 		case ID_MENU_HELP_ABOUT:
-			MessageBox(hwnd, L"GitHub Repo Manager\nWin32 C++\n\nDémo complète : création de repos GitHub, historique, tri, recherche, export ZIP.", L"À propos", MB_OK | MB_ICONINFORMATION);
+			MessageBox(hwnd, L"GitHub Repo Manager\nWin32 C++\n\nDÃ©mo complÃ¨te : crÃ©ation de repos GitHub, historique, tri, recherche, export ZIP.", L"Ã€ propos", MB_OK | MB_ICONINFORMATION);
 			return 0;
 		}
 	}
@@ -649,4 +649,5 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		return 0;
 	}
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+
 }
